@@ -8,22 +8,24 @@
 using namespace tiledpp::map;
 using json = nlohmann::json;
 
-JsonMap::JsonMap(std::istream &json) {
-    this->source = json::parse(json);
+JsonMap::JsonMap(std::istream &mapJson) {
+    this->mapJson = json::parse(mapJson);
 }
 
 int JsonMap::getWidth() const {
-    return (int)this->source["width"];
+    return (int)this->mapJson["width"];
 }
 
 int JsonMap::getHeight() const {
-    return 0;
+    return (int)this->mapJson["height"];
 }
 
-std::list<layer::Layer> JsonMap::getLayers() const {
-    
-}
-
-std::list<tileset::Tileset> JsonMap::getTilesets() const {
-    
+std::vector<std::unique_ptr<layer::Layer>> JsonMap::getLayers() const {
+    std::vector<std::unique_ptr<layer::Layer>> layers = {};
+    for (json layerJson: this->mapJson["layers"]) {
+        layers.push_back(std::make_unique<layer::JsonLayer>(
+            layer::JsonLayer(layerJson)
+        ));
+    }
+    return layers;
 }
