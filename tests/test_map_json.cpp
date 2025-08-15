@@ -3,7 +3,7 @@
 
 using namespace tiledpp::map;
 
-TEST_CASE("Construct JsonMap from fstream") {
+TEST_CASE("JsonMap") {
     std::stringstream raw(
         R"({})" // Empty
     );
@@ -13,7 +13,7 @@ TEST_CASE("Construct JsonMap from fstream") {
     });
 }
 
-TEST_CASE("Get map width") {
+TEST_CASE("getWidth") {
     std::stringstream raw(
         R"({
             "width": 11
@@ -25,7 +25,7 @@ TEST_CASE("Get map width") {
     CHECK_EQ(11, map.getWidth());
 }
 
-TEST_CASE("Get map height") {
+TEST_CASE("getHeight") {
     std::stringstream raw(
         R"({
             "height": 17
@@ -37,7 +37,7 @@ TEST_CASE("Get map height") {
     CHECK_EQ(17, map.getHeight());
 }
 
-TEST_CASE("Get map tiles width") {
+TEST_CASE("getTileWidth") {
     std::stringstream raw(
         R"({
             "tilewidth": 23
@@ -49,7 +49,7 @@ TEST_CASE("Get map tiles width") {
     CHECK_EQ(23, map.getTileWidth());
 }
 
-TEST_CASE("Get map tiles height") {
+TEST_CASE("getTileHeight") {
     std::stringstream raw(
         R"({
             "tileheight": 71
@@ -61,9 +61,9 @@ TEST_CASE("Get map tiles height") {
     CHECK_EQ(71, map.getTileHeight());
 }
 
-TEST_CASE("Get map orientation") {
+TEST_CASE("getOrientation") {
     
-    SUBCASE("Orthogonal orientation") {
+    SUBCASE("Orthogonal") {
         std::stringstream raw(
             R"({
                 "orientation": "orthogonal"
@@ -75,7 +75,7 @@ TEST_CASE("Get map orientation") {
         CHECK_EQ(Orientation::Orthogonal, map.getOrientation());
     }
 
-    SUBCASE("Isometric orientation") {
+    SUBCASE("Isometric") {
         std::stringstream raw(
             R"({
                 "orientation": "isometric"
@@ -87,7 +87,7 @@ TEST_CASE("Get map orientation") {
         CHECK_EQ(Orientation::Isometric, map.getOrientation());
     }
 
-    SUBCASE("Staggered orientation") {
+    SUBCASE("Staggered") {
         std::stringstream raw(
             R"({
                 "orientation": "staggered"
@@ -99,7 +99,7 @@ TEST_CASE("Get map orientation") {
         CHECK_EQ(Orientation::Staggered, map.getOrientation());
     }
 
-    SUBCASE("Hexagonal orientation") {
+    SUBCASE("Hexagonal") {
         std::stringstream raw(
             R"({
                 "orientation": "hexagonal"
@@ -112,7 +112,7 @@ TEST_CASE("Get map orientation") {
     }
 }
 
-TEST_CASE("Is map infinite") {
+TEST_CASE("isInfinite") {
 
     SUBCASE("Map IS infinite") {
         std::stringstream raw(
@@ -139,11 +139,11 @@ TEST_CASE("Is map infinite") {
     }
 }
 
-TEST_CASE("Get map tilesets") {
+TEST_CASE("getTilesets") {
     // TODO
 }
 
-TEST_CASE("Get map layers") {
+TEST_CASE("getLayers") {
     std::stringstream raw(
         R"({
             "layers": [

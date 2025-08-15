@@ -3,7 +3,7 @@
 
 using namespace tiledpp::map::layer;
 
-TEST_CASE("Constructing JsonLayer from istream") {
+TEST_CASE("JsonLayer") {
     std::stringstream raw(
         R"({})" // Empty
     );
@@ -13,7 +13,7 @@ TEST_CASE("Constructing JsonLayer from istream") {
     });
 }
 
-TEST_CASE("Getting layer id") {
+TEST_CASE("getId") {
     std::stringstream raw(R"({
         "id": 11    
     })");
@@ -23,7 +23,7 @@ TEST_CASE("Getting layer id") {
     CHECK_EQ(11, layer.getId());
 }
 
-TEST_CASE("Getting layer name") {
+TEST_CASE("getName") {
     std::stringstream raw(R"({
         "name": "layername"    
     })");
@@ -33,7 +33,7 @@ TEST_CASE("Getting layer name") {
     CHECK_EQ("layername", layer.getName());
 }
 
-TEST_CASE("Getting layer width") {
+TEST_CASE("getWidth") {
     std::stringstream raw(R"({
         "width": 23    
     })");
@@ -43,7 +43,7 @@ TEST_CASE("Getting layer width") {
     CHECK_EQ(23, layer.getWidth());
 }
 
-TEST_CASE("Getting layer height") {
+TEST_CASE("getHeight") {
     std::stringstream raw(R"({
         "height": 29    
     })");
