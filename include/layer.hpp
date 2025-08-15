@@ -8,11 +8,16 @@
 
 namespace tiledpp::map::layer {
 
+enum class LayerType {
+    TileLayer,
+};
+
 class Layer {
     public:
         virtual ~Layer() = default;
         virtual int getId() const = 0;
         virtual std::string getName() const = 0;
+        //virtual LayerType getLayerType() const = 0;
         virtual int getWidth() const = 0;
         virtual int getHeight() const = 0;
 };
@@ -24,10 +29,11 @@ class JsonLayer: public Layer {
     public:
         JsonLayer(nlohmann::json layerJson);
         JsonLayer(std::istream &layerJson);
-        int getId() const override;
-        std::string getName() const override;
-        int getWidth() const override;
-        int getHeight() const override;  
+        int getId() const;
+        std::string getName() const;
+        //LayerType getLayerType() const;
+        int getWidth() const;
+        int getHeight() const;
 };
 
 }
