@@ -32,24 +32,8 @@ class Map {
         virtual int getTileHeight() const = 0;
         virtual Orientation getOrientation() const = 0;
         virtual bool isInfinite() const = 0;
-        //virtual std::vector<std::unique_ptr<tileset::Tileset>> getTilesets() const = 0;
-        virtual std::vector<std::unique_ptr<layer::Layer>> getLayers() const = 0;
-};
-
-class JsonMap: public Map {
-    private:
-        nlohmann::json mapJson;
-
-    public:
-        JsonMap(std::istream &json);
-        int getWidth() const;
-        int getHeight() const;
-        int getTileWidth() const;
-        int getTileHeight() const;
-        Orientation getOrientation() const;
-        bool isInfinite() const;
-        //std::vector<std::unique_ptr<tileset::Tileset>> getTilesets() const;
-        std::vector<std::unique_ptr<layer::Layer>> getLayers() const;
+        virtual std::vector<tileset::Tileset> getTilesets() const = 0;
+        virtual std::vector<layer::Layer> getLayers() const = 0;
 };
 
 }
