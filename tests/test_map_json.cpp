@@ -1,5 +1,5 @@
 #include <doctest/doctest.h>
-#include <map.hpp>
+#include "map.hpp"
 
 using namespace tiledpp::map;
 
